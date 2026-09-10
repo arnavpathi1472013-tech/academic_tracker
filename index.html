@@ -39,34 +39,49 @@
   </header>
 
   <section class="record-card" aria-label="Student profile">
-    <div class="field">
-      <label for="studentName">Full name</label>
-      <input type="text" id="studentName" placeholder="Enter your full name" autocomplete="off">
+    <div class="record-fields">
+      <div class="field">
+        <label for="studentName">Full name</label>
+        <input type="text" id="studentName" placeholder="Enter your full name" autocomplete="off">
+      </div>
+      <div class="field">
+        <label for="studentClass">Grade</label>
+        <select id="studentClass">
+          <option value="" disabled selected>Enter the grade in which you are studying</option>
+          <option value="1">Class 1</option>
+          <option value="2">Class 2</option>
+          <option value="3">Class 3</option>
+          <option value="4">Class 4</option>
+          <option value="5">Class 5</option>
+          <option value="6">Class 6</option>
+          <option value="7">Class 7</option>
+          <option value="8">Class 8</option>
+          <option value="9">Class 9</option>
+          <option value="10">Class 10</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="studentSection">Section</label>
+        <input type="text" id="studentSection" maxlength="2" placeholder="e.g. A" autocomplete="off">
+      </div>
+      <div class="field">
+        <label for="studentRoll">Roll number</label>
+        <input type="number" id="studentRoll" min="1" max="99" placeholder="Enter your roll number" list="rollOptions" autocomplete="off">
+        <datalist id="rollOptions"></datalist>
+      </div>
     </div>
-    <div class="field">
-      <label for="studentClass">Grade</label>
-      <select id="studentClass">
-        <option value="" disabled selected>Enter the grade in which you are studying</option>
-        <option value="1">Class 1</option>
-        <option value="2">Class 2</option>
-        <option value="3">Class 3</option>
-        <option value="4">Class 4</option>
-        <option value="5">Class 5</option>
-        <option value="6">Class 6</option>
-        <option value="7">Class 7</option>
-        <option value="8">Class 8</option>
-        <option value="9">Class 9</option>
-        <option value="10">Class 10</option>
-      </select>
-    </div>
-    <div class="field">
-      <label for="studentSection">Section</label>
-      <input type="text" id="studentSection" maxlength="2" placeholder="e.g. A" autocomplete="off">
-    </div>
-    <div class="field">
-      <label for="studentRoll">Roll number</label>
-      <input type="number" id="studentRoll" min="1" max="99" placeholder="Enter your roll number" list="rollOptions" autocomplete="off">
-      <datalist id="rollOptions"></datalist>
+    <div class="record-photo">
+      <span class="photo-label">Photo</span>
+      <div class="photo-frame" id="photoFrame">
+        <img id="photoPreview" alt="Student photo" hidden>
+        <span class="photo-placeholder" id="photoPlaceholder">No photo yet</span>
+      </div>
+      <div class="photo-actions no-print">
+        <label class="photo-upload-btn" for="photoInput">Upload</label>
+        <button type="button" class="photo-remove-btn" id="photoRemoveBtn" hidden>Remove</button>
+      </div>
+      <input type="file" id="photoInput" accept="image/png, image/jpeg, image/webp" hidden>
+      <p class="photo-hint no-print">Passport-size photo &middot; up to 5&nbsp;MB</p>
     </div>
   </section>
 
