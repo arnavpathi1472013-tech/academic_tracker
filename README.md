@@ -44,7 +44,7 @@
 
 ---
 
-## What is this thing?
+## 🧭 What is this thing
 
 A single-page result tracker built around the **KVS Classes 6–8** evaluation scheme. You punch in raw marks as they get declared, and every percentage, grade, and chart updates *instantly* — no page reloads, no backend, no account, no ads. Just you, your marks, and some honest math.
 
@@ -60,6 +60,7 @@ A single-page result tracker built around the **KVS Classes 6–8** evaluation s
 ## ✨ Features
 
 - 🈳 **Starts blank.** No fake sample student, no pre-filled marks — just friendly placeholders telling you what to type.
+- 🖼️ **Passport photo, right where a report card wants it.** Upload a photo (JPEG/PNG/WebP, up to 5 MB) and it shows up in the profile card on screen *and* on the right side of the student details when you print — no fumbling with a photocopier.
 - 🎯 **Live recalculation.** Every number on the page — table cells, the summary strip, the header logo's mini bar chart, the badge next to it — updates the instant you type a mark.
 - 🚦 **Grade chips** (A1 down to E2) pop in automatically once a subject's got both terms filled in, color-coded so you can scan for trouble spots at a glance.
 - 🎮 **Target simulator.** Set a goal percentage (or tap an A1 / A2 / B1 / B2 preset) and it tells you exactly what average you need across whatever's still blank — and calls it out plainly if the target's already locked in or already out of reach.
@@ -131,13 +132,13 @@ A subject only earns a grade chip once *both* terms have at least one mark in �
 
 It will **not** correctly score:
 - Senior classes (9–12) — different KVS structure with internals, practicals, and a different split.
-- Junior Classes (1-5) — different KVS structure and different marking scheme. 
+- Non-KVS CBSE schools — many run their own periodic-test count or weightage.
 - Non-KVS CBSE schools — many run their own periodic-test count or weightage.
 - Any non-CBSE board (ICSE, state boards, IB, etc.) — structurally different entirely.
 
-If you feed it a different scheme's marks, it will produce a percentage that looks legitimate but isn't.
-
-Also: data lives only in that browser's `localStorage` on that device. Switch browsers, go incognito, or clear site data, and the saved register won't follow you.
+If you feed it a different scheme's marks, it will produce a percentage that looks legitimate but isn't. 
+---
+Also: data lives only in that browser's `localStorage` on that device. Switch browsers, go incognito, or clear site data, and the saved register won't follow you. Photos are stored the same way — a very large photo close to the 5 MB cap can occasionally push a save over the browser's storage limit; if "Save data" ever fails, try a smaller photo.
 
 ## 👤 Credits
 
