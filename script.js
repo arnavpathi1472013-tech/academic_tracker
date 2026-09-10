@@ -5,7 +5,7 @@ const CAPS = { pt1: 40, hye: 60, pt2: 40, see: 60 };
 const WEIGHT_MAX = { pt1: 10, hye: 40, pt2: 10, see: 40 };
 
 const state = {
-  profile: { name: "", grade: "", section: "", roll: "" },
+  profile: { name: "", grade: "", section: "", roll: "", photo: null },
   marks: {}
 };
 
@@ -441,6 +441,7 @@ function applyProfileToDom() {
   document.getElementById("studentClass").value = state.profile.grade || "";
   document.getElementById("studentSection").value = state.profile.section || "";
   document.getElementById("studentRoll").value = state.profile.roll || "";
+  renderPhoto();
 }
 
 function applyMarksToDom() {
@@ -482,12 +483,67 @@ function populateRollDatalist() {
   list.innerHTML = html;
 }
 
+const MAX_PHOTO_BYTES = 5 * 1024 * 1024;
+
+function renderPhoto() {
+  const img = document.getElementById("photoPreview");
+  const placeholder = document.getElementById("photoPlaceholder");
+  const removeBtn = document.getElementById("photoRemoveBtn");
+  if (state.profile.photo) {
+    img.src = state.profile.photo;
+    img.hidden = false;
+    placeholder.hidden = true;
+    removeBtn.hidden = false;
+  } else {
+    img.hidden = true;
+    img.removeAttribute("src");
+    placeholder.hidden = false;
+    removeBtn.hidden = true;
+  }
+}
+
+function onPhotoSelected(e) {
+  const file = e.target.files && e.target.files[0];
+  if (!file) return;
+  if (!file.type.startsWith("image/")) {
+    showToast("Please choose an image file");
+    e.target.value = "";
+    return;
+  }
+  if (file.size > MAX_PHOTO_BYTES) {
+    showToast("That photo is over 5 MB — try a smaller one");
+    e.target.value = "";
+    return;
+  }
+  const reader = new FileReader();
+  reader.onload = () => {
+    state.profile.photo = reader.result;
+    renderPhoto();
+  };
+  reader.onerror = () => {
+    showToast("Couldn't read that photo — try again");
+  };
+  reader.readAsDataURL(file);
+}
+
+function removePhoto() {
+  state.profile.photo = null;
+  document.getElementById("photoInput").value = "";
+  renderPhoto();
+}
+
+function bindPhotoInputs() {
+  document.getElementById("photoInput").addEventListener("change", onPhotoSelected);
+  document.getElementById("photoRemoveBtn").addEventListener("click", removePhoto);
+}
+
 function resetAll() {
   const confirmed = window.confirm("This clears the profile and every mark entered. Continue?");
   if (!confirmed) return;
-  state.profile = { name: "", grade: "", section: "", roll: "" };
+  state.profile = { name: "", grade: "", section: "", roll: "", photo: null };
   SUBJECTS.forEach(s => { state.marks[s] = { pt1: null, hye: null, pt2: null, see: null }; });
   localStorage.removeItem(STORAGE_KEY);
+  document.getElementById("photoInput").value = "";
   applyProfileToDom();
   applyMarksToDom();
   document.getElementById("targetInput").value = "";
@@ -501,6 +557,7 @@ function init() {
   populateRollDatalist();
   populateRadarSelect();
   bindProfileInputs();
+  bindPhotoInputs();
 
   loadFromStorage();
   applyProfileToDom();
