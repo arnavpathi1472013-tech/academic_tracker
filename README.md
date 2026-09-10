@@ -44,7 +44,7 @@
 
 ---
 
-## 🧭 What is this thing
+## What is this thing?
 
 A single-page result tracker built around the **KVS Classes 6–8** evaluation scheme. You punch in raw marks as they get declared, and every percentage, grade, and chart updates *instantly* — no page reloads, no backend, no account, no ads. Just you, your marks, and some honest math.
 
@@ -130,11 +130,12 @@ A subject only earns a grade chip once *both* terms have at least one mark in �
 > **This tracker is hard-wired for the KVS Classes 6–8 scheme** — PT‑1 (10%), Half Yearly (40%), PT‑2 (10%), Session Ending (40%). Nothing else.
 
 It will **not** correctly score:
-- 🎓 Senior classes (9–12) — different KVS structure with internals, practicals, and a different split.
-- 🏫 Non-KVS CBSE schools — many run their own periodic-test count or weightage.
-- 🌍 Any non-CBSE board (ICSE, state boards, IB, etc.) — structurally different entirely.
+- Senior classes (9–12) — different KVS structure with internals, practicals, and a different split.
+- Junior Classes (1-5) — different KVS structure and different marking scheme. 
+- Non-KVS CBSE schools — many run their own periodic-test count or weightage.
+- Any non-CBSE board (ICSE, state boards, IB, etc.) — structurally different entirely.
 
-Feed it a different scheme's marks and it'll cheerfully produce a percentage that *looks* legit and isn't. To adapt it, tweak the `CAPS` and `WEIGHT_MAX` constants near the top of `script.js` to match your scheme, and update the table headers in `index.html` to match.
+If you feed it a different scheme's marks, it will produce a percentage that looks legitimate but isn't.
 
 Also: data lives only in that browser's `localStorage` on that device. Switch browsers, go incognito, or clear site data, and the saved register won't follow you.
 
